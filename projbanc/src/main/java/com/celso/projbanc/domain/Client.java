@@ -1,6 +1,6 @@
 package com.celso.projbanc.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ public class Client extends People implements Serializable {
 		super();
 	}
 
-	public Client(Integer id, String name, String cpf, LocalDate birthDate) {
+	public Client(Integer id, String name, String cpf, LocalDateTime birthDate) {
 		super(id, name, cpf, birthDate);
 	}
 

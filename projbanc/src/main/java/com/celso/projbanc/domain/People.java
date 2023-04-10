@@ -1,6 +1,6 @@
 package com.celso.projbanc.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public abstract class People {
@@ -8,13 +8,13 @@ public abstract class People {
 	private Integer id;
 	private String name;
 	private String cpf;
-	private LocalDate birthDate;
+	private LocalDateTime birthDate;
 
 	public People() {
 		super();
 	}
 
-	public People(Integer id, String name, String cpf, LocalDate birthDate) {
+	public People(Integer id, String name, String cpf, LocalDateTime birthDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,11 +46,11 @@ public abstract class People {
 		this.cpf = cpf;
 	}
 
-	public LocalDate getBirthDate() {
+	public LocalDateTime getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
+	public void setBirthDate(LocalDateTime birthDate) {
 		this.birthDate = birthDate;
 	}
 
