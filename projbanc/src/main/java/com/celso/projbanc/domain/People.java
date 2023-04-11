@@ -3,11 +3,25 @@ package com.celso.projbanc.domain;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import org.hibernate.validator.constraints.br.CPF;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public abstract class People {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
+	private String name;	
+	@CPF
 	private String cpf;
+	@JsonFormat(pattern = "dd/MM/yyy HH:mm")
 	private LocalDateTime birthDate;
 
 	public People() {

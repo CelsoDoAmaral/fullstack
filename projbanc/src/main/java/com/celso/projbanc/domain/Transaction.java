@@ -4,20 +4,39 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import com.celso.projbanc.domain.enuns.TransactionType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Transaction {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Integer idAccount;
+	@JsonFormat(pattern = "dd/MM/yyy HH:mm")
 	private LocalDateTime transactionDate;
 	private Integer transactionType;
 	private Double transactionValue;
+	
+	@ManyToOne
+	@JoinColumn(name="client_id")
 	private Client client;
+	
+	@ManyToOne
+	@JoinColumn(name="account_id")
 	private Account account;
 	
 	public Transaction() {
 		super();
 		this.setTransactionDate(LocalDateTime.now());
+		
 	}
 
 	public Transaction(Integer id, Integer idAccount, TransactionType transactionType,

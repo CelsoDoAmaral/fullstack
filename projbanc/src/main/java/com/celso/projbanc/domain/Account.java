@@ -1,18 +1,38 @@
 package com.celso.projbanc.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import java.util.Objects;
 
+import com.celso.projbanc.domain.enuns.AccountType;
 import com.celso.projbanc.domain.enuns.StatusAccount;
+import com.celso.projbanc.domain.enuns.TransactionType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class Account {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String accountNumber;
-	private String accountType;
+	private Integer accountType;
+	@JsonFormat(pattern = "dd/MM/yyy HH:mm")
 	private LocalDateTime accountOpen;
+	@JsonFormat(pattern = "dd/MM/yyy HH:mm")
 	private LocalDateTime accountClose;
 	private Double balance;
 	private Integer statusAccount;
+	
+	@OneToMany(mappedBy="account")
+	private List<Transaction> list = new ArrayList<>();
 	
 	public Account() {
 		super();
@@ -36,12 +56,13 @@ public class Account {
 		this.accountClose = accountClose;
 	}
 
-	public Account(Integer id, String accountNumber, String accountType, 
+	public Account(Integer id, String accountNumber, AccountType accountType, 
 			Double balance, StatusAccount statusAccount) {
 		super();
 		this.id = id;
 		this.accountNumber = accountNumber;
-		this.accountType = accountType;
+		//this.accountType = accountType;
+		this.accountType = (accountType == null) ? 0 : accountType.getCod();
 		this.setAccountOpen(LocalDateTime.now());
 		this.balance = balance;
 		this.statusAccount = (statusAccount == null) ? 0 : statusAccount.getCod();
@@ -71,12 +92,12 @@ public class Account {
 		this.accountNumber = accountNumber;
 	}
 
-	public String getAccountType() {
-		return accountType;
+	public AccountType getAccountType() {
+		return AccountType.toEnum(this.accountType);
 	}
 
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
+	public void setAccountType(AccountType accountType) {
+		this.accountType = accountType.getCod();
 	}
 
 	public Double getBalance() {
