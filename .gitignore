@@ -1,2 +1,5 @@
 HELP.md
 .metadata/
+projbanc/src/main/resources/application.properties
+projbanc/src/main/resources/application-test.properties
+projbanc/src/main/resources/application-dev.properties
