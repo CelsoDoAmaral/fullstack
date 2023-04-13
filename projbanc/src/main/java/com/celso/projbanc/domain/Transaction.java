@@ -123,10 +123,5 @@ public class Transaction {
 		Transaction other = (Transaction) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
-	
-	
 
 }

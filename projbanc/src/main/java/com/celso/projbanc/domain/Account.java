@@ -3,12 +3,10 @@ package com.celso.projbanc.domain;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Objects;
 
 import com.celso.projbanc.domain.enuns.AccountType;
 import com.celso.projbanc.domain.enuns.StatusAccount;
-import com.celso.projbanc.domain.enuns.TransactionType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
@@ -130,3 +128,4 @@ public class Account {
 	
 
 }
+

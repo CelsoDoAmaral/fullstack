@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
@@ -12,6 +14,7 @@ import jakarta.persistence.OneToMany;
 public class Client extends People implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="client")
 	private List<Transaction> list = new ArrayList<>();
 
@@ -32,3 +35,4 @@ public class Client extends People implements Serializable {
 	}
 
 }
+
