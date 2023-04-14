@@ -4,20 +4,31 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.celso.projbanc.domain.Client;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public class ClientDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
+	
+	@NotEmpty(message = "O campo nome é obrigatório")
 	private String name;
 
 	@CPF
+	@NotEmpty(message = "O campo CPF é obrigatório")
 	private String cpf;
 
-	@JsonFormat(pattern = "dd/MM/yyy HH:mm")
+	//@NotEmpty(message = "O campo Data de Nascimento é obrigatório")
+	//@JsonFormat(pattern = "dd/MM/yyy HH:mm")
+	
+	@NotNull(message = "Data não pode ser nula")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	private LocalDateTime birthDate;
 
 	public ClientDTO() {

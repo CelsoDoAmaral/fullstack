@@ -18,6 +18,8 @@ import com.celso.projbanc.domain.Client;
 import com.celso.projbanc.dtos.ClientDTO;
 import com.celso.projbanc.services.ClientService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/clients")
 public class ClientResource {
@@ -39,7 +41,7 @@ public class ClientResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ClientDTO> create(@RequestBody ClientDTO objDTO){
+	public ResponseEntity<ClientDTO> create(@Valid @RequestBody ClientDTO objDTO){
 		Client newObj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
 		
