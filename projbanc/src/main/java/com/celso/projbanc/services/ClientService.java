@@ -12,6 +12,8 @@ import com.celso.projbanc.repositories.ClientRepository;
 import com.celso.projbanc.services.exceptions.DataIntegratyViolationException;
 import com.celso.projbanc.services.exceptions.ObjectNotFoundException;
 
+import jakarta.validation.Valid;
+
 @Service
 public class ClientService {
 	
@@ -39,6 +41,20 @@ public class ClientService {
 			throw new DataIntegratyViolationException("CPF já cadastrado na base de dados");
 		}
 		return repository.save(new Client(null, objDTO.getName(), objDTO.getCpf(), objDTO.getBirthDate()));
+	}
+	
+	public Client update(Integer id, @Valid ClientDTO objDTO) {
+		Client oldObj = findById(id);
+		
+		if(findByCPF(objDTO) != null && findByCPF(objDTO).getId() != id) {
+			throw new DataIntegratyViolationException("CPF já cadastrado na base de dados");
+		}
+		
+		oldObj.setName(objDTO.getName());
+		oldObj.setCpf(objDTO.getCpf());
+		oldObj.setBirthDate(objDTO.getBirthDate());
+		
+		return repository.save(oldObj);
 	}
 	
 	private Client findByCPF(ClientDTO objDTO) {

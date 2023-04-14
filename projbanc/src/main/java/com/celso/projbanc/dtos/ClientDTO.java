@@ -28,6 +28,7 @@ public class ClientDTO implements Serializable {
 	//@JsonFormat(pattern = "dd/MM/yyy HH:mm")
 	
 	@NotNull(message = "Data não pode ser nula")
+	@JsonFormat(pattern = "dd/MM/yyy HH:mm")
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	private LocalDateTime birthDate;
 
