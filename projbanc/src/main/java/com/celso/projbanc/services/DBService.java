@@ -27,9 +27,9 @@ public class DBService {
 	private TransactionRepository transactionReposiroty;
 
 	public void instanciaDB() {
-		Client cl1 = new Client(null, "Carlos do Amaral", "14701879819", LocalDateTime.of(1980, 4, 5, 0, 0));
-		Account ac1 = new Account(null, "3215", AccountType.POUPANCA, 0.0, StatusAccount.ABERTA);
-		Transaction ts1 = new Transaction(null, 1, TransactionType.DEPOSITO, 100.1, cl1, ac1);
+		Client cl1 = new Client(null, "Pedro do Amaral", "14701879819", LocalDateTime.of(1980, 4, 5, 0, 0));
+		Account ac1 = new Account(null, "32315", AccountType.POUPANCA, 0.0, StatusAccount.ABERTA);
+		Transaction ts1 = new Transaction(null, 1, TransactionType.DEPOSITO, 1040.1, cl1, ac1);
 
 		cl1.getList().add(ts1);
 		clientReposiroty.saveAll(Arrays.asList(cl1));
