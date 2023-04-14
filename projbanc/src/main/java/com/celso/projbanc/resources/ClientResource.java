@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,12 +29,18 @@ public class ClientResource {
 	@Autowired
 	private ClientService service;
 
+	/*
+	 * list  one Client
+	 * */
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ClientDTO> findById(@PathVariable Integer id) {
 		ClientDTO objDTO = new ClientDTO(service.findById(id));
 		return ResponseEntity.ok().body(objDTO);
 	}
 
+	/*
+	 * list Client
+	 * */
 	@GetMapping
 	public ResponseEntity<List<ClientDTO>> findAll() {
 		
@@ -41,6 +48,10 @@ public class ClientResource {
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
+	
+	/*
+	 * create Client
+	 * */
 	@PostMapping
 	public ResponseEntity<ClientDTO> create(@Valid @RequestBody ClientDTO objDTO){
 		Client newObj = service.create(objDTO);
@@ -49,11 +60,23 @@ public class ClientResource {
 		return ResponseEntity.created(uri).build();		
 	}
 	
+	/*
+	 * update Client
+	 * */
 	@PutMapping(value="/{id}")
 	public ResponseEntity<ClientDTO> update(@PathVariable Integer id, @Valid @RequestBody ClientDTO objDTO){
 		
 		ClientDTO newObj = new ClientDTO(service.update(id, objDTO));
 		
 		return ResponseEntity.ok().body(newObj);
+	}
+	
+	/*
+	 * Delete Client
+	 * */
+	@DeleteMapping(value="/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 }

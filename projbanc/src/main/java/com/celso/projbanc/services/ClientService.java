@@ -57,6 +57,15 @@ public class ClientService {
 		return repository.save(oldObj);
 	}
 	
+	public void delete(Integer id) {
+		Client obj = findById(id);
+		
+		if(obj.getList().size() > 0) {
+			throw new DataIntegratyViolationException("Client possui transações cadastradas, não pode ser deletado");
+		}
+		repository.deleteById(id);
+	}
+	
 	private Client findByCPF(ClientDTO objDTO) {
 		 Client obj = repository.findByCPF(objDTO.getCpf());
 		 if(obj != null) {
@@ -64,4 +73,6 @@ public class ClientService {
 		 }
 		 return null;
 	}
+
+
 }
