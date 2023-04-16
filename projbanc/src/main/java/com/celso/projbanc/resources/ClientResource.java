@@ -39,7 +39,7 @@ public class ClientResource {
 	}
 
 	/*
-	 * list Client
+	 * list all Clients
 	 * */
 	@GetMapping
 	public ResponseEntity<List<ClientDTO>> findAll() {

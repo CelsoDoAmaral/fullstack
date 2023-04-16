@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile;
 import com.celso.projbanc.services.DBService;
 
 @Configuration
-@Profile("test")
+@Profile("dev")
 public class TestConfig {
 
 	@Autowired

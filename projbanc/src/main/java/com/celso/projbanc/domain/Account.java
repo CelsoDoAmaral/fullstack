@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import com.celso.projbanc.domain.enuns.AccountType;
 import com.celso.projbanc.domain.enuns.StatusAccount;
+import com.celso.projbanc.domain.enuns.TransactionType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
@@ -53,17 +54,20 @@ public class Account {
 	public void setAccountClose(LocalDateTime accountClose) {
 		this.accountClose = accountClose;
 	}
+	
+	
 
-	public Account(Integer id, String accountNumber, AccountType accountType, 
-			Double balance, StatusAccount statusAccount) {
+	public Account(Integer id, String accountNumber, AccountType accountType,/* LocalDateTime accountOpen,*/
+			/*LocalDateTime accountClose,*/ Double balance, StatusAccount statusAccount/*, List<Transaction> list*/) {
 		super();
 		this.id = id;
 		this.accountNumber = accountNumber;
-		//this.accountType = accountType;
 		this.accountType = (accountType == null) ? 0 : accountType.getCod();
-		this.setAccountOpen(LocalDateTime.now());
+		//this.setAccountOpen(LocalDateTime.now());
+		//this.accountClose = accountClose;
 		this.balance = balance;
 		this.statusAccount = (statusAccount == null) ? 0 : statusAccount.getCod();
+		//this.list = list;
 	}
 
 	public StatusAccount getStatusAccount() {
@@ -97,7 +101,7 @@ public class Account {
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType.getCod();
 	}
-
+	
 	public Double getBalance() {
 		return balance;
 	}
@@ -122,10 +126,5 @@ public class Account {
 		Account other = (Account) obj;
 		return Objects.equals(accountNumber, other.accountNumber) && Objects.equals(id, other.id);
 	}
-	
-	
-	
-	
-
 }
 

@@ -1,1 +1,3 @@
 /.metadata/
+/projbanc/.env
+/projbanc/docker-compose.yml
